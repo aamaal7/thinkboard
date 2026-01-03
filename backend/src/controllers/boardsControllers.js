@@ -2,7 +2,7 @@ import Board from "../models/Board.js";
 
 export async function getBoards(req, res) {
   try {
-    const boards = await Board.find();
+    const boards = await Board.find().sort({ createdAt: -1 });
     res.status(200).json(boards);
   } catch (error) {
     console.error("Get ERROR: ", error);
@@ -12,8 +12,9 @@ export async function getBoards(req, res) {
 
 export async function getSpecificBoard(req, res) {
   try {
-    const boards = await Board.findById(req.params.id);
-    res.status(200).json(boards);
+    const board = await Board.findById(req.params.id);
+    if (!board) return res.status(404).json({ message: "Board not found" });
+    res.status(200).json(board);
   } catch (error) {
     console.error("Get ERROR: ", error);
     res.status(500).json({ message: "Internal Server Error" });
