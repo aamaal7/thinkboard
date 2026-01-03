@@ -8,6 +8,7 @@ const app = express();
 const port = process.env.PORT;
 connectDB();
 
+app.use(express.json());
 app.use("/actions/boards", boardsRoutes);
 
 app.listen(port, () => {

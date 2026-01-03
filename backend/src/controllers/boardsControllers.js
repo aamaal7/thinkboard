@@ -1,15 +1,68 @@
-export const getBoards = (req, res) => {
-  res.status(200).send("There are 10 boards");
-};
+import Board from "../models/Board.js";
 
-export const createBoard = (req, res) => {
-  res.status(201).json({ message: "Board created" });
-};
+export async function getBoards(req, res) {
+  try {
+    const boards = await Board.find();
+    res.status(200).json(boards);
+  } catch (error) {
+    console.error("Get ERROR: ", error);
+    res.status(500).json({ message: "Internal Server Error" });
+  }
+}
 
-export const updateBoard = (req, res) => {
-  res.status(200).json({ message: "Board updated" });
-};
+export async function getSpecificBoard(req, res) {
+  try {
+    const boards = await Board.findById(req.params.id);
+    res.status(200).json(boards);
+  } catch (error) {
+    console.error("Get ERROR: ", error);
+    res.status(500).json({ message: "Internal Server Error" });
+  }
+}
 
-export const deleteBoard = (req, res) => {
-  res.status(200).json({ message: "Board deleted" });
-};
+export async function createBoard(req, res) {
+  try {
+    const { title, content } = req.body;
+    const newBoard = new Board({ title, content });
+
+    await newBoard.save();
+    res.status(201).json({ message: "Board created" });
+  } catch (error) {
+    console.error("post ERROR: ", error);
+    res.status(500).json({ message: "Internal Server Error" });
+  }
+}
+
+export async function updateBoard(req, res) {
+  try {
+    const { title, content } = req.body;
+    const updatedBoard = await Board.findByIdAndUpdate(
+      req.params.id,
+      { title, content },
+      { new: true }
+    );
+    if (!updatedBoard)
+      return res.status(404).json({ message: "Board not found" });
+    res.status(200).json({ message: "Board Updated" });
+  } catch (error) {
+    console.error("put ERROR: ", error);
+    res.status(500).json({ message: "Internal Server Error" });
+  }
+}
+
+export async function deleteBoard(req, res) {
+  try {
+    const { title, content } = req.body;
+    const deletedBoard = await Board.findByIdAndDelete(
+      req.params.id,
+      { title, content },
+      { new: true }
+    );
+    if (!deletedBoard)
+      return res.status(404).json({ message: "Board not found" });
+    res.status(200).json({ message: "Board Deleted" });
+  } catch (error) {
+    console.error("delete ERROR: ", error);
+    res.status(500).json({ message: "Internal Server Error" });
+  }
+}

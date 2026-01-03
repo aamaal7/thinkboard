@@ -4,11 +4,14 @@ import {
   createBoard,
   updateBoard,
   deleteBoard,
+  getSpecificBoard,
 } from "../controllers/boardsControllers.js";
 
 const router = express.Router();
 
 router.get("/", getBoards);
+
+router.get("/:id", getSpecificBoard);
 
 router.post("/", createBoard);
 
