@@ -6,7 +6,12 @@ export const BoardCard = ({ board, setBoards }) => {
   const handleDelete = async (e, id) => {
     e.preventDefault();
 
-    if (!window.confirm("Are you sure you want to delete this board?")) return;
+    if (
+      !window.confirm(
+        "Are you sure you want to delete this board? This action cannot be undone."
+      )
+    )
+      return;
 
     try {
       await api.delete(`/boards/${id}`);
