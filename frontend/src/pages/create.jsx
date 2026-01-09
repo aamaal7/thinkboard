@@ -32,7 +32,7 @@ const Create = () => {
     }
   };
   return (
-    <div className="min-h-screen bg-gradient-to-b from-gray-950 via-gray-900 to-black text-white">
+    <div className="min-h-screen bg-linear-to-b from-gray-950 via-gray-900 to-black text-white">
       <div className="p-6 md:p-8">
         <Link
           to="/"
@@ -44,7 +44,7 @@ const Create = () => {
       </div>
 
       <div className="max-w-3xl mx-auto px-6 pb-12 md:px-8">
-        <h1 className="text-4xl md:text-5xl font-bold mb-10 bg-gradient-to-r from-blue-400 to-blue-600 bg-clip-text text-transparent">
+        <h1 className="text-4xl md:text-5xl font-bold mb-10 bg-linear-to-r from-blue-400 to-blue-600 bg-clip-text text-transparent">
           Create New Board
         </h1>
 
@@ -96,7 +96,7 @@ const Create = () => {
                 rounded-xl 
                 text-white text-lg 
                 placeholder:text-gray-500 
-                resize-y min-h-[180px]
+                resize-y min-h-45
                 focus:outline-none focus:border-blue-400 focus:ring-2 focus:ring-blue-500/30
                 transition-all duration-300
               "

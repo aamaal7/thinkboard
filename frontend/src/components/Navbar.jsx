@@ -8,7 +8,7 @@ export const Navbar = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16 md:h-20">
           <Link to="/" className="group flex items-center">
-            <h1 className="font-logo tracking-tighter font-extrabold text-3xl md:text-4xl bg-gradient-to-r from-blue-400 to-blue-600 bg-clip-text text-transparent group-hover:from-blue-300 group-hover:to-blue-500 transition-all duration-300">
+            <h1 className="font-logo tracking-tighter font-extrabold text-3xl md:text-4xl bg-linear-to-r from-blue-400 to-blue-600 bg-clip-text text-transparent group-hover:from-blue-300 group-hover:to-blue-500 transition-all duration-300">
               ThinkBoard
             </h1>
           </Link>
@@ -20,7 +20,7 @@ export const Navbar = () => {
                 inline-flex items-center gap-2 sm:gap-3
                 px-5 sm:px-6 md:px-8 lg:px-10
                 py-2.5 sm:py-3 md:py-3.5
-                bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-500 hover:to-blue-600
+                bg-linear-to-r from-blue-600 to-blue-700 hover:from-blue-500 hover:to-blue-600
                 text-white font-medium text-base sm:text-lg
                 rounded-full
                 shadow-lg shadow-blue-700/30 hover:shadow-xl hover:shadow-blue-600/50
