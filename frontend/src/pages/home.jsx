@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Navbar } from "../components/Navbar.jsx";
 import { BoardCard } from "../components/BoardCard.jsx";
 import toast from "react-hot-toast";
-import axios from "axios";
+import api from "../lib/api";
 const Home = () => {
   const [boards, setBoards] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -10,7 +10,7 @@ const Home = () => {
   useEffect(() => {
     const fetchBoards = async () => {
       try {
-        const res = await axios.get("http://localhost:5001/actions/boards/");
+        const res = await api.get("/boards");
         console.log(res.data);
         setBoards(res.data);
       } catch (error) {
