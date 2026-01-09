@@ -3,6 +3,7 @@ import { Navbar } from "../components/Navbar.jsx";
 import { BoardCard } from "../components/BoardCard.jsx";
 import toast from "react-hot-toast";
 import api from "../lib/api";
+import { NotesNotFound } from "../components/NotesNotFound.jsx";
 const Home = () => {
   const [boards, setBoards] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -32,10 +33,12 @@ const Home = () => {
           </div>
         )}
 
+        {boards.length === 0 && <NotesNotFound />}
+
         {boards.length > 0 && (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-15 mt-15 mx-10">
             {boards.map((board) => (
-              <BoardCard key={board._id} board={board} />
+              <BoardCard key={board._id} board={board} setBoards={setBoards} />
             ))}
           </div>
         )}

@@ -1,7 +1,21 @@
 import { Link } from "react-router-dom";
 import { PenSquare, Trash2 } from "lucide-react";
+import api from "../lib/api";
+import toast from "react-hot-toast";
+export const BoardCard = ({ board, setBoards }) => {
+  const handleDelete = async (e, id) => {
+    e.preventDefault();
 
-export const BoardCard = ({ board }) => {
+    if (!window.confirm("Are you sure you want to delete this board?")) return;
+
+    try {
+      await api.delete(`/boards/${id}`);
+      setBoards((prev) => prev.filter((board) => board._id !== id));
+      toast.success("Board deleted successfully!");
+    } catch (error) {
+      toast.error("Failed to delete board");
+    }
+  };
   return (
     <Link
       to={`/board/${board._id}`}
@@ -31,7 +45,10 @@ export const BoardCard = ({ board }) => {
             <button className="p-2 rounded-lg bg-black/30 hover:bg-blue-600/30 text-blue-300 hover:text-white transition-colors">
               <PenSquare className="size-5" />
             </button>
-            <button className="p-2 rounded-lg bg-black/30 hover:bg-red-600/30 text-red-300 hover:text-white transition-colors">
+            <button
+              className="p-2 rounded-lg bg-black/30 hover:bg-red-600/30 text-red-300 hover:text-white transition-colors"
+              onClick={(e) => handleDelete(e, board._id)}
+            >
               <Trash2 className="size-5" />
             </button>
           </div>
